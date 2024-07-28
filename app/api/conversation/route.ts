@@ -12,9 +12,6 @@ const genAI = new GoogleGenerativeAI(key);
 const model=genAI.getGenerativeModel({model:'gemini-1.5-flash'});
 
 
-
-
-
 export async function POST(req: Request) {
   try {
   const {userId }=auth()
@@ -52,3 +49,6 @@ return  NextResponse.json(value)
     return new NextResponse(`Error:${error}`, { status: 500 });
   }
 }
+
+
+

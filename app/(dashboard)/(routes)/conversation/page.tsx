@@ -15,7 +15,9 @@ import { useRouter } from "next/navigation";
 import { useState } from 'react';
 import Empty from '@/components/empty';
 import Loader from '@/components/loader';
-
+import { cn } from '@/lib/utils';
+import UserAvatar from '@/components/user-avatar'
+import BotAvatar from '@/components/bot-avatar'
 
 type formSchemaType = z.infer<typeof formSchema>
 
@@ -108,9 +110,15 @@ const ConversationPage = () => {
             )}
             <div className='flex flex-col-reverse gap-y-4'>
               {messages.map((msg, index) => (
-                <div key={index}>
-                  {msg}
+                <div
+                  className={cn('p-8 w-full flex items-start gap-x-8 rounded-lg', index % 2 == 0 ? "bg-muted" : 'bg-white border border-black/10')}
+                  key={index}>
+                  {index % 2 == 0 ? < BotAvatar /> : < UserAvatar />}
+                  <p className='text-sm'>
+                    {msg}
+                  </p>
                 </div>
+
               ))}
             </div>
           </div>
