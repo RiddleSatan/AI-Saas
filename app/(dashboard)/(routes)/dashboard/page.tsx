@@ -43,7 +43,7 @@ const tools = [{
 {
   label: "Code Generation",
   icon: Code2,
-  href: "/codeGeneration",
+  href: "/code",
   color: "text-green-400",
   bgColor: "bg-green-500/10"
 },
