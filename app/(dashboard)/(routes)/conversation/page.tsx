@@ -13,12 +13,12 @@ import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { useState } from 'react';
-import { ChatCompletionMessage } from 'openai/resources/index.mjs';
+
 
 type formSchemaType = z.infer<typeof formSchema>
 
 const ConversationPage = () => {
-  const [messages, setMessages] = useState<ChatCompletionMessage[]>([])
+  const [messages, setMessages] = useState<any[]>([])
   const router = useRouter()
   const form = useForm<formSchemaType>(
     {
@@ -34,21 +34,20 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: formSchemaType) => {
     try {
-      const userMessage: ChatCompletionMessage = {
-        role: 'assistant', // Change to "assistant"
-        content: values.prompt
-      }
+      const userMessage = values.prompt
 
 
 
       const newMessage = [...messages, userMessage]
 
       const response = await axios.post('/api/conversation', {
-        messages: 'how to calculate the area of circle'
+        messages: newMessage
       })
-      setMessages((curr) => [...curr, userMessage, response.data])//it is a better practice and safter approach compare to the below one i.e.
+      console.log(response.data)
+      setMessages((curr) => [...curr, response.data, userMessage,])//it is a better practice and safter approach compare to the below one i.e.
       // setMessages([newMessage, response.data]);
-      console.log(newMessage)
+
+      console.log(messages)
       form.reset();
     } catch (error: any) {
       console.log('!Error:', error)
@@ -99,9 +98,9 @@ const ConversationPage = () => {
           </div>
           <div className="space-y-2 mt-4">
             <div className='flex flex-col-reverse gap-y-4'>
-              {messages.map((msg) => (
-                <div key={msg.content}>
-                  {msg.content}
+              {messages.map((msg, index) => (
+                <div key={index}>
+                  {msg}
                 </div>
               ))}
             </div>
