@@ -13,6 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { useState } from 'react';
+import Empty from '@/components/empty';
+import Loader from '@/components/loader';
 
 
 type formSchemaType = z.infer<typeof formSchema>
@@ -58,10 +60,8 @@ const ConversationPage = () => {
   }
 
 
-
   return (
     <>
-
       <Header title='Conversation' description="Our most advanced conversation model." icon={MessageCircle} iconColor="text-blue-500" bgColor="bg-blue-500/10" />
       <div className="px-4 lg:px-8">
 
@@ -97,6 +97,15 @@ const ConversationPage = () => {
             </Form>
           </div>
           <div className="space-y-2 mt-4">
+            {isLoading && (
+              <div className='p-8 flex items-center justify-center rounded-lg bg-muted'>
+                <Loader />
+              </div>
+
+            )}
+            {messages.length === 0 && !isLoading && (
+              <div><Empty lable='!...nothing to show...!' /></div>
+            )}
             <div className='flex flex-col-reverse gap-y-4'>
               {messages.map((msg, index) => (
                 <div key={index}>
@@ -110,6 +119,8 @@ const ConversationPage = () => {
     </>
   )
 }
+
+
 
 export default ConversationPage
 
