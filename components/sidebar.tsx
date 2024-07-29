@@ -23,7 +23,7 @@ const routes = [
   {
     label: "Image Generation",
     icon: Image,
-    href: "/imageGeneration",
+    href: "/image",
     color: "text-pink-500",
   },
   {
@@ -41,7 +41,7 @@ const routes = [
   {
     label: "Code Generation",
     icon: Code2,
-    href: "/codeGeneration",
+    href: "/code",
     color: "text-green-400",
   },
   {

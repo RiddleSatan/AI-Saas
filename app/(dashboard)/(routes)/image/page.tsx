@@ -2,12 +2,12 @@
 
 import axios from 'axios';
 import { Header } from "@/components/header"
-import { MessageCircle } from "lucide-react"
-import { useForm, useFormContext } from "react-hook-form"
+
+import { useForm } from "react-hook-form"
 import *  as z from "zod";
 import { formSchema } from "./formSchema";
 import { zodResolver } from "@hookform/resolvers/zod"
-
+import { Image } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -16,13 +16,14 @@ import { useState } from 'react';
 import Empty from '@/components/empty';
 import Loader from '@/components/loader';
 import { cn } from '@/lib/utils';
-import UserAvatar from '@/components/user-avatar'
-import BotAvatar from '@/components/bot-avatar'
+
 
 type formSchemaType = z.infer<typeof formSchema>
 
 const ConversationPage = () => {
-  const [messages, setMessages] = useState<any[]>([])
+
+  const [images,setImages]=useState<string[]>([])
+
   const router = useRouter()
   const form = useForm<formSchemaType>(
     {
@@ -38,20 +39,17 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: formSchemaType) => {
     try {
-      const userMessage = values.prompt
 
 
 
-      const newMessage = [...messages, userMessage]
 
-      const response = await axios.post('/api/conversation', {
-        messages: newMessage
+
+
+      const response = await axios.post('/api/image', {
+
       })
-      console.log(response.data)
-      setMessages((curr) => [...curr, response.data, userMessage,])//it is a better practice and safter approach compare to the below one i.e.
-      // setMessages([newMessage, response.data]);
 
-      console.log(messages)
+
       form.reset();
     } catch (error: any) {
       console.log('!Error:', error)
@@ -64,7 +62,7 @@ const ConversationPage = () => {
 
   return (
     <>
-      <Header title='Conversation' description="Our most advanced conversation model." icon={MessageCircle} iconColor="text-blue-500" bgColor="bg-blue-500/10" />
+      <Header title='Conversation' description="Our most advanced conversation model." icon={Image} iconColor="text-pink-500" bgColor="bg-pink-500/10" />
       <div className="px-4 lg:px-8">
 
         <div className="px-4 lg:px-8">
@@ -105,21 +103,11 @@ const ConversationPage = () => {
               </div>
 
             )}
-            {messages.length === 0 && !isLoading && (
+            {images.length === 0 && !isLoading && (
               <div><Empty lable='!...nothing to show...!' /></div>
             )}
             <div className='flex flex-col-reverse gap-y-4'>
-              {messages.map((msg, index) => (
-                <div
-                  className={cn('p-8 w-full flex items-start gap-x-8 rounded-lg', index % 2 == 0 ? "bg-muted" : 'bg-white border border-black/10')}
-                  key={index}>
-                  {index % 2 == 0 ? < BotAvatar /> : < UserAvatar />}
-                  <p className='text-sm'>
-                    {msg}
-                  </p>
-                </div>
-
-              ))}
+            images will appear here
             </div>
           </div>
         </div>
