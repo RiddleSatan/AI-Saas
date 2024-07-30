@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@api/monster-api": "file:.api/apis/monster-api",
     "@clerk/nextjs": "^5.2.4",
     "@google/generative-ai": "^0.16.0",
     "@hookform/resolvers": "^3.9.0",
@@ -21,8 +22,10 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "lucide-react": "^0.412.0",
+    "monsterapi": "^0.0.5",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
+    "node-fetch": "^3.3.2",
     "openai": "^4.53.2",
     "react": "^18",
     "react-dom": "^18",
