@@ -2,6 +2,9 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  const response = await req.json();
+  const { messages } = response;
+
   const key = process.env.IMAGE_GEN_API_KEY;
 
   const baseUrl = "https://modelslab.com/api/v6/realtime/text2img";
@@ -15,8 +18,8 @@ export async function POST(req: Request) {
   };
   const body = {
     key,
-    prompt:
-      "ultra realistic close up portrait ((beautiful pale cyberpunk female with heavy black eyeliner))",
+    prompt: messages.prompt,
+
     negative_prompt: "bad quality",
     width: "512",
     height: "512",
@@ -39,16 +42,15 @@ export async function POST(req: Request) {
 
       postResoponse = await axios.post(fetch_result, { key }, options);
       const { status } = postResoponse.data;
-      if (status == "sucess") {
-        imageStatus = "sucess";
+      if (status == "success") {
+        imageStatus = "success";
       } else if (status == "error") {
         throw new Error("Image generation failed");
       }
+      console.log(postResoponse?.data.output[0]);
     }
 
-    console.log(postResoponse?.data);
-
-    return new NextResponse(response.data);
+    return new NextResponse(response.data.output[0]);
   } catch (error) {
     console.log("Error", error);
   }
