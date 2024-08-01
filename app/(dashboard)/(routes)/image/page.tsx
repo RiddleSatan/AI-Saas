@@ -63,13 +63,13 @@ const ConversationPage = () => {
       const response = await axios.post('/api/image', {
         messages: {
           prompt:values.prompt,
-          // number:values.number,
-          // resolution:values.resolution
+          number:values.number,
+          resolution:values.resolution
         }
       })
 
      
-      // setImages([])
+      setImages(response.data.output[0])
       
    console.log(images)
       // console.log(images)
@@ -174,7 +174,7 @@ const ConversationPage = () => {
             <div className='flex flex-col-reverse gap-y-4 w-full items-center'>
 
          
-                {/* <Image width={500} height={500} src={images} alt='random' /> */}
+                <Image width={500} height={500} src={images} alt='random' />
      
             </div>
           </div>

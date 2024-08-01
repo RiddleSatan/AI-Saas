@@ -3,7 +3,7 @@ import axios from "axios";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-/*
+
 export async function POST(req: Request) {
   const response = await req.json();
   const { messages } = response;
@@ -69,7 +69,8 @@ export async function POST(req: Request) {
 }
 
 
-*/
+
+/*
 
 const key=process.env.DEEPAI_KEY
 
@@ -111,3 +112,4 @@ return new NextResponse(response.data)
 }
 
 }
+*/
