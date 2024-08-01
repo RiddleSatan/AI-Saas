@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
 import { NextResponse } from "next/server";
 
@@ -6,6 +7,7 @@ export async function POST(req: Request) {
   const { messages } = response;
 
   const key = process.env.IMAGE_GEN_API_KEY;
+  const {userId }=auth()
 
   const baseUrl = "https://modelslab.com/api/v6/realtime/text2img";
 
@@ -30,6 +32,14 @@ export async function POST(req: Request) {
     webhook: null,
     track_id: null,
   };
+
+
+  if(!userId){
+    return new NextResponse('Unauthorized user',{status:401})
+  }
+  if(!process.env.API_KEY){
+    return new NextResponse('openai key is not set',{status:500})
+  }
 
   try {
     const response = await axios.post(baseUrl, body, options);

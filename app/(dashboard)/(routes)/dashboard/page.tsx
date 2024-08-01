@@ -29,14 +29,14 @@ const tools = [{
 {
   label: "Video Generation",
   icon: VideoIcon,
-  href: "/videoGeneration",
+  href: "/video",
   color: "text-violet-500",
   bgColor: "bg-violet-500/10"
 },
 {
   label: "Music Generation",
   icon: Music,
-  href: "/musicGeneration",
+  href: "/music",
   color: "text-cyan-500",
   bgColor: "bg-cyan-500/10"
 },
