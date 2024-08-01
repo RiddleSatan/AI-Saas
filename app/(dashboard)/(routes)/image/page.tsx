@@ -174,7 +174,7 @@ const ConversationPage = () => {
             <div className='flex flex-col-reverse gap-y-4 w-full items-center'>
 
          
-                <Image width={500} height={500} src={images} alt='random' />
+                <Image width={500} height={500} src={`${images}`} alt='random' />
      
             </div>
           </div>
