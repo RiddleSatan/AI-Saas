@@ -1,7 +1,9 @@
 import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
+/*
 export async function POST(req: Request) {
   const response = await req.json();
   const { messages } = response;
@@ -64,4 +66,48 @@ export async function POST(req: Request) {
   } catch (error) {
     console.log("Error", error);
   }
+}
+
+
+*/
+
+const key=process.env.DEEPAI_KEY
+
+export async function POST(req:Request){
+
+
+
+const userId=auth()
+
+const res=await req.json()
+const {messages}= res
+
+const option={
+  text:messages.prompt
+}
+
+if(!userId){
+  return new NextResponse('user not available')
+}
+
+if(!key){
+  return new NextResponse('authentication key not available')
+}
+
+
+try {
+const response=await axios.post('https://api.deepai.org/api/text2img',option,{ 
+    headers: {
+  'Content-Type': 'application/json',
+  'api-key': key
+}, 
+})
+console.log(response)
+
+return new NextResponse(response.data)
+
+} catch (error) {
+  console.log('Error',error)
+}
+
 }

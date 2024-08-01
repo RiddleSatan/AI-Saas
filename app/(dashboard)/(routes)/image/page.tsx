@@ -35,7 +35,7 @@ type formSchemaType = z.infer<typeof formSchema>
 
 const ConversationPage = () => {
 
-  const [images, setImages] = useState<string[]>([])
+  const [images, setImages] = useState<string>()
 
   const router = useRouter()
   const form = useForm<formSchemaType>(
@@ -49,7 +49,7 @@ const ConversationPage = () => {
     }
   )
   // const {getFieldState,getValues}=useFormContext()
-const url='https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'
+
 
   const isLoading = form.formState.isSubmitting;
 
@@ -63,13 +63,13 @@ const url='https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'
       const response = await axios.post('/api/image', {
         messages: {
           prompt:values.prompt,
-          number:values.number,
-          resolution:values.resolution
+          // number:values.number,
+          // resolution:values.resolution
         }
       })
 
      
-      setImages([url])
+      // setImages([])
       
    console.log(images)
       // console.log(images)
@@ -152,14 +152,6 @@ const url='https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'
                     </FormItem>
                   )}
                 />
-
-
-
-
-
-
-
-
                 <Button
                   disabled={isLoading}
                   className="col-span-12 lg:col-span-2 w-full"
@@ -182,19 +174,27 @@ const url='https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'
             <div className='flex flex-col-reverse gap-y-4 w-full items-center'>
 
          
-                <Image width={500} height={500} src={`${images[0]}`} alt='random' />
+                {/* <Image width={500} height={500} src={images} alt='random' /> */}
      
             </div>
-
-
-
-
-
           </div>
         </div>
       </div>
     </>
   )
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
