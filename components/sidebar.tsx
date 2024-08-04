@@ -53,40 +53,49 @@ const routes = [
   },
 ];
 
-type sidebar={
-  apiLimit:number
+type sidebar = {
+  apiLimit: number
 }
 
-const Sidebar = ({apiLimit}:sidebar) => {
-  const pathname=usePathname()
+const Sidebar = ({ apiLimit }: sidebar) => {
+  const pathname = usePathname()
   return (
     <>
-      <div className="flex flex-col space-y-10 py-4 bg-black text-white h-full px-4">
-        <Link
-          className=" flex  gap-2 items-center  justify-start h-fit"
-          href="/dashboard"
-        >
-          <div className="w-16 h-16 overflow-hidden">
-            <img className="invert" src="./logo.png" alt="Logo" />
+      <div className="flex flex-col  justify-between space-y-10 py-4 bg-black text-white h-full px-4">
+
+        <div>
+
+
+          <Link
+            className=" flex mb-8  gap-2 items-center  justify-start h-fit"
+            href="/dashboard"
+          >
+            <div className="w-16 h-16 overflow-hidden">
+              <img className="invert" src="./logo.png" alt="Logo" />
+            </div>
+            <h1 className="font-bold text-3xl">Riddle's</h1>
+          </Link>
+
+          <div className="space-y-1">
+            {routes.map((route) => (
+              <Link
+                href={route.href} key={route.href}
+                className={cn("text-sm group flex justify-start hover:bg-white/10 transition rounded w-full  py-3", pathname === route.href ? "text-black bg-white hover:bg-white" : "text-white")}
+              >
+                <div className="flex items-center justify-start flex-1 px-2 font-semibold ">
+                  <route.icon className={`mr-3 w-5 h-5 ${route.color}`} />
+                  {route.label}
+                </div>
+              </Link>
+            ))}
           </div>
-          <h1 className="font-bold text-3xl">Riddle's</h1>
-        </Link>
-        
-        <div className="space-y-1">
-          {routes.map((route) => (
-            <Link
-              href={route.href} key={route.href}
-              className={cn("text-sm group flex justify-start hover:bg-white/10 transition rounded w-full  py-3",pathname===route.href?"text-black bg-white hover:bg-white":"text-white")}
-            >
-              <div className="flex items-center justify-start flex-1 px-2 font-semibold ">
-                <route.icon  className={`mr-3 w-5 h-5 ${route.color}`}/>
-                {route.label}
-              </div>
-            </Link>
-          ))}
         </div>
-        <FreeCounter apiLimit={apiLimit}/>
-        </div>
+
+
+
+        <FreeCounter apiLimit={apiLimit} />
+
+      </div>
     </>
   );
 };
