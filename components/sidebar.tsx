@@ -6,6 +6,7 @@ import { Code2, Code2Icon, Image, LayoutDashboard, MessageCircle, MessageSquareI
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import path from "path";
+import FreeCounter from "./freeCounter";
 
 const routes = [
   {
@@ -52,7 +53,11 @@ const routes = [
   },
 ];
 
-const Sidebar = () => {
+type sidebar={
+  apiLimit:number
+}
+
+const Sidebar = ({apiLimit}:sidebar) => {
   const pathname=usePathname()
   return (
     <>
@@ -80,6 +85,7 @@ const Sidebar = () => {
             </Link>
           ))}
         </div>
+        <FreeCounter apiLimit={apiLimit}/>
         </div>
     </>
   );
