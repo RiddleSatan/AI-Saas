@@ -1,3 +1,4 @@
+import { checkApiLimit, increaseApiLimit } from '@/lib/api-limit'
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import Replicate from 'replicate'
@@ -52,11 +53,18 @@ const {prompt}=response
 //    }
     
 // }
+
+const freeTrial = await checkApiLimit();
+
+    if (!freeTrial) {
+      return new NextResponse("free trial has been expired", { status: 403 });
+    }
+
 let prediction = await replicate.predictions.create({
     version: "8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05",
     input
   });
-
+await increaseApiLimit()
   prediction = await replicate.wait(prediction);
 console.log(prediction.output);
 

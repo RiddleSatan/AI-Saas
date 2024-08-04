@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 
 
 export async function POST(req: Request) {
@@ -43,8 +44,15 @@ export async function POST(req: Request) {
     return new NextResponse('openai key is not set',{status:500})
   }
 
+  const freeTrial = await checkApiLimit();
+
+    if (!freeTrial) {
+      return new NextResponse("free trial has been expired", { status: 403 });
+    }
+
   try {
     const response = await axios.post(baseUrl, body, options);
+    await increaseApiLimit()
     const { status, fetch_result } = response.data;
     let imageStatus = status;
     let postResoponse;
