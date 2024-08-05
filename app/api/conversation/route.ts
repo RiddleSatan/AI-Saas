@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     // return NextResponse.json(response.choices[0]);
 
     const result = await model.generateContent(messages);
-    await increaseApiLimit()
+    await increaseApiLimit();
     const value = result.response.text();
     console.log(value);
     return NextResponse.json(value);
