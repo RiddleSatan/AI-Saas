@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-export type upgradeState{
+export type upgradeState={
     isOpen:boolean
 }
 const initialState = {
