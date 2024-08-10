@@ -25,5 +25,5 @@ export const upgradeSlice=createSlice({
 
 export const { onClose, onOpen } = upgradeSlice.actions;
 
-export default upgradeSlice;
+export default upgradeSlice.reducer;
 
