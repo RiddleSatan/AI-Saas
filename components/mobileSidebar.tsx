@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 
 import { Button } from "./ui/button"
@@ -8,8 +8,13 @@ import Sidebar from "@/components/sidebar"
 import { useEffect, useState } from "react"
 
 
-const MobileSidebar = () => {
+type sidebar = {
+  apiLimit: number
+}
+
+const MobileSidebar = ({ apiLimit }: sidebar) => {
   const [isMounted, setIsMounted] = useState(false)
+
 
   useEffect(() => {
     setIsMounted(true)
@@ -28,7 +33,7 @@ const MobileSidebar = () => {
           </Button>
         </SheetTrigger>
         <SheetContent side='left' className="p-0" >
-          <Sidebar />
+          <Sidebar apiLimit={apiLimit} />
         </SheetContent >
       </Sheet>
     </>

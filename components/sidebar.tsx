@@ -57,7 +57,7 @@ type sidebar = {
   apiLimit: number
 }
 
-const Sidebar = ({ apiLimit }: sidebar) => {
+const Sidebar = async ({ apiLimit }: sidebar) => {
   const pathname = usePathname()
   return (
     <>

@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-
 import ProModalProvider from "@/components/proModalProvider";
 
 
-
 const inter = Inter({ subsets: ["latin"] });
-
 
 export const metadata: Metadata = {
   title: "Riddle's",
@@ -25,11 +22,18 @@ export default function RootLayout({
       <html lang="en">
 
         <body className={inter.className}>
-          <ProModalProvider  />
+
+          <ProModalProvider />
           {children}
+
+
         </body>
       </html>
     </ClerkProvider>
   );
 }
+
+
+
+
 

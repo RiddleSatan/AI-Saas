@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import {
   Dialog,
@@ -7,23 +9,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { useSelector } from 'react-redux'
-
-
+import { useAppSelector } from '@/lib/hooks'
+import { onClose } from '@/lib/features/upgrade/upgradeSlice'
 
 
 
 const ProModal = () => {
 
- const proModal=useSelector(state=>state) 
+  const isOpen: boolean = useAppSelector(state => state.isOpen)
+
 
   return (
-    <Dialog open={proModal.isOpen}>
+    <Dialog open={isOpen} >
       <DialogTrigger >Open</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className='flex flex-col justify-center items-center gap-y-4 pb-2'>Upgrade To ProModal</DialogTitle>
-          
+
         </DialogHeader>
       </DialogContent>
     </Dialog>

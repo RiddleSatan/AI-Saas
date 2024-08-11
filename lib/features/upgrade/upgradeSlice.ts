@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { PayloadAction } from "@reduxjs/toolkit";
 
 export type upgradeState={
-    isOpen:boolean
+    isOpen:boolean,
 }
-const initialState = {
+
+
+   
+const initialState:upgradeState = {
     isOpen: false,
   };
 
 export const upgradeSlice=createSlice({
     name:'upgrade',
     initialState,
-    reducers:{
+    reducers:{  
         onOpen:state=>{state.isOpen=true
             return state;
         },
