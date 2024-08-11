@@ -2,12 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 import ProModal from './proModal'
-import { Provider } from 'react-redux'
-import { makeStore } from '@/lib/store'
 
 
 const ProModalProvider = () => {
-  const store=makeStore()
+
     const [isMounted,setIsMounted]=useState(false)
 
     useEffect(()=>{
@@ -20,10 +18,10 @@ setIsMounted(true)
 
   return (
     <>
-    <Provider store={store}>
+  
 
     <ProModal/>
-    </Provider>
+  
     </>
   )
 }
