@@ -1,13 +1,13 @@
-'use client';
+
 
 import { useState, useEffect } from "react";
-import { Card,CardContent } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { MAX_FREE_COUNT } from "@/const";
 import { Progress } from "@/components/ui/progress"
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import { useAppDispatch } from "@/lib/hooks";
-import {  onOpen } from "@/lib/features/upgrade/upgradeSlice";
+import { onOpen } from "@/lib/features/upgrade/upgradeSlice";
 
 
 
@@ -18,11 +18,11 @@ type freeCounterProps = {
 
 
 export default function FreeCounter({ apiLimit = 0 }: freeCounterProps) {
-const dispatch=useAppDispatch()
+    const dispatch = useAppDispatch()
 
-const handleOpen=()=>{
-    dispatch(onOpen())
-}
+    const handleOpen = () => {
+        dispatch(onOpen())
+    }
 
     const [mounted, setMounted] = useState(false)
     useEffect(() => (
@@ -37,20 +37,20 @@ const handleOpen=()=>{
     return (
         <div className="px-3">
             <Card className="border-0 bg-white ">
-                     <CardContent className="py-4">
-                        <div className="text-center text-sm">
-                            <p>{apiLimit}/{MAX_FREE_COUNT}  Free Generations</p>
-                            
-                        <Progress className="h-3 mt-1 border-black bg-orange-500  border-[1px]" value={(apiLimit/MAX_FREE_COUNT)*100} /> 
+                <CardContent className="py-4">
+                    <div className="text-center text-sm">
+                        <p>{apiLimit}/{MAX_FREE_COUNT}  Free Generations</p>
+
+                        <Progress className="h-3 mt-1 border-black bg-orange-500  border-[1px]" value={(apiLimit / MAX_FREE_COUNT) * 100} />
                         <Button onClick={handleOpen} className="mt-3 w-full h-8 bg-black text-white hover:bg-orange-500 ">
                             Upgrade
-                            <Zap className="w-4 h-4 ml-2"/>
+                            <Zap className="w-4 h-4 ml-2" />
                         </Button>
-                        </div>
+                    </div>
 
-                     </CardContent >
+                </CardContent >
             </Card>
-         
+
         </div>
     )
 }

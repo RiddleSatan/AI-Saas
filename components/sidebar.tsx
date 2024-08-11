@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
 import React from "react";
 import Link from "next/link";
 import { Code2, Code2Icon, Image, LayoutDashboard, MessageCircle, MessageSquareIcon, Music, Settings, Settings2, VideoIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import path from "path";
+
 import FreeCounter from "./freeCounter";
 
 const routes = [
@@ -57,7 +57,7 @@ type sidebar = {
   apiLimit: number
 }
 
-const Sidebar = async ({ apiLimit }: sidebar) => {
+const Sidebar = ({ apiLimit }: sidebar) => {
   const pathname = usePathname()
   return (
     <>
