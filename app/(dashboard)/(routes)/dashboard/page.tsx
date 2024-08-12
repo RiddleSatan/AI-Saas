@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -55,7 +55,7 @@ const tools = [{
   bgColor: "bg-white/10 "
 },]
 
-export default function Dashboard () {
+const Dashboard = () => {
   const router=useRouter()
   return (
     <div>
@@ -84,4 +84,4 @@ export default function Dashboard () {
   );
 };
 
-
+export default Dashboard;
