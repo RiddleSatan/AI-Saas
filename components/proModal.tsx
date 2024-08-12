@@ -12,6 +12,11 @@ import {
 import { useAppSelector } from '@/lib/hooks'
 import { onClose } from '@/lib/features/upgrade/upgradeSlice'
 import { useAppDispatch } from '@/lib/hooks'
+import { Badge } from './ui/badge'
+import { Button } from './ui/button'
+import { Zap } from 'lucide-react'
+
+
 
 
 
@@ -32,8 +37,17 @@ const ProModal = () => {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className='text-center'>Riddle Pro </DialogTitle>
-        
+          <DialogTitle className='flex flex-col gap-y-2 justify-center items-center'>
+            <div className='flex items-center gap-x-2'>
+                  Upgrade to Riddle's Pro
+            <Badge className='py-1'>PRO</Badge>
+            </div>
+                <Button>
+                  Upgrade
+                  <Zap className='w-4 h-4 ml-1 mr-0'/>
+                </Button>
+          </DialogTitle>
+
         </DialogHeader>
       </DialogContent>
     </Dialog>

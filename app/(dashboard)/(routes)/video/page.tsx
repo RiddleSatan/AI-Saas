@@ -15,11 +15,14 @@ import { useRouter } from "next/navigation";
 import { useState } from 'react';
 import Empty from '@/components/empty';
 import Loader from '@/components/loader';
+import { useAppDispatch } from '@/lib/hooks';
+import { onOpen } from '@/lib/features/upgrade/upgradeSlice';
 
 
 type formSchemaType = z.infer<typeof formSchema>
 
 const ConversationPage = () => {
+  const dispatch=useAppDispatch()
 const [video,setVideo]=useState<string>()
   const router = useRouter()
   const form = useForm<formSchemaType>(
@@ -51,7 +54,9 @@ setVideo('')
       console.log(response.data)
       form.reset();
     } catch (error: any) {
-      console.log('!Error:', error)
+      if(error?.response?.status === 403){
+        dispatch(onOpen())
+     }
     } finally {
       router.refresh()
     }

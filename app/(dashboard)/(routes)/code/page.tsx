@@ -18,6 +18,8 @@ import UserAvatar from '@/components/user-avatar'
 import BotAvatar from '@/components/bot-avatar'
 import { Code2 } from 'lucide-react';
 import ReactMarkdown from "react-markdown";
+import { useAppDispatch } from '@/lib/hooks';
+import { onOpen } from '@/lib/features/upgrade/upgradeSlice';
 
 
 
@@ -26,6 +28,7 @@ type formSchemaType = z.infer<typeof formSchema>
 
 const CodePage = () => {
   const [messages, setMessages] = useState<any[]>([])
+  const dispatch=useAppDispatch()
   const router = useRouter()
   const form = useForm<formSchemaType>(
     {
@@ -57,7 +60,9 @@ const CodePage = () => {
       console.log(messages)
       form.reset();
     } catch (error: any) {
-      console.log('!Error:', error)
+      if(error?.response?.status === 403){
+        dispatch(onOpen())
+     }
     } finally {
       router.refresh()
     }

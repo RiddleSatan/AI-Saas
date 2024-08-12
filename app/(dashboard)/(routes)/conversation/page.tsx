@@ -18,6 +18,8 @@ import Loader from '@/components/loader';
 import { cn } from '@/lib/utils';
 import UserAvatar from '@/components/user-avatar'
 import BotAvatar from '@/components/bot-avatar'
+import { useAppDispatch } from '@/lib/hooks';
+import { onOpen } from '@/lib/features/upgrade/upgradeSlice';
 
 
 
@@ -26,6 +28,8 @@ type formSchemaType = z.infer<typeof formSchema>
 const ConversationPage = () => {
   const [messages, setMessages] = useState<any[]>([])
   const router = useRouter()
+  const dispatch=useAppDispatch()
+
   const form = useForm<formSchemaType>(
     {
       resolver: zodResolver(formSchema),//auto validation so we dont have to worry about doing validation of the input field  manually  
@@ -55,8 +59,11 @@ const ConversationPage = () => {
 
       console.log(messages)
       form.reset();
-    } catch (error: any) {
-      console.log('!Error:', error)
+    }  catch (error: any) {
+      if(error?.response?.status === 403){
+         dispatch(onOpen())
+      }
+
     } finally {
       router.refresh()
     }

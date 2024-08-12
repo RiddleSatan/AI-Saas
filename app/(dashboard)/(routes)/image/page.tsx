@@ -28,13 +28,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { string } from 'zod';
+import { onOpen } from '@/lib/features/upgrade/upgradeSlice';
+import { useAppDispatch } from '@/lib/hooks';
 
 
 
 type formSchemaType = z.infer<typeof formSchema>
 
 const ConversationPage = () => {
-
+  const dispatch = useAppDispatch()
   const [images, setImages] = useState<string>()
 
   const router = useRouter()
@@ -59,23 +61,25 @@ const ConversationPage = () => {
 
       console.log(values)
 
-    
+
       const response = await axios.post('/api/image', {
         messages: {
-          prompt:values.prompt,
-          number:values.number,
-          resolution:values.resolution
+          prompt: values.prompt,
+          number: values.number,
+          resolution: values.resolution
         }
       })
 
-     
+
       setImages(response.data.output[0])
-      
-   console.log(images)
+
+      console.log(images)
       // console.log(images)
       form.reset();
     } catch (error: any) {
-      console.log('!Error:', error)
+      if (error?.response?.status === 403) {
+        dispatch(onOpen())
+      }
     } finally {
       router.refresh()
     }
@@ -173,9 +177,9 @@ const ConversationPage = () => {
             )}
             <div className='flex flex-col-reverse gap-y-4 w-full items-center'>
 
-         
-                <Image width={500} height={500} src={`${images}`} alt='random' />
-     
+
+              <Image width={500} height={500} src={`/${images}`} alt='random' />
+
             </div>
           </div>
         </div>

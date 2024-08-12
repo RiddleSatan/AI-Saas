@@ -15,14 +15,16 @@ import { useRouter } from "next/navigation";
 import { useState } from 'react';
 import Empty from '@/components/empty';
 import Loader from '@/components/loader';
-import { cn } from '@/lib/utils';
-import UserAvatar from '@/components/user-avatar'
-import BotAvatar from '@/components/bot-avatar'
+import { useAppDispatch } from '@/lib/hooks';
+import { onOpen } from '@/lib/features/upgrade/upgradeSlice';
+
 
 type formSchemaType = z.infer<typeof formSchema>
 
+
 const ConversationPage = () => {
-  const [audio,setAudio]=useState<string>()
+  const dispatch = useAppDispatch()
+  const [audio, setAudio] = useState<string>()
   const router = useRouter()
   const form = useForm<formSchemaType>(
     {
@@ -41,24 +43,26 @@ const ConversationPage = () => {
       setAudio(undefined)
 
 
-    
-     
 
-      const response = await axios.post('/api/music',{
 
-        prompt:values.prompt
+
+      const response = await axios.post('/api/music', {
+
+        prompt: values.prompt
       })
       // console.log('response:',response.data)
 
-      
-      console.log('response in audio:',response.data.output.audio)
-      setAudio(response.data.output.audio)
-     
 
- 
+      console.log('response in audio:', response.data.output.audio)
+      setAudio(response.data.output.audio)
+
+
+
       form.reset()
     } catch (error: any) {
-      console.log('!Error:', error)
+      if (error?.response?.status === 403) {
+        dispatch(onOpen())
+      }
     } finally {
       router.refresh()
     }
@@ -107,20 +111,20 @@ const ConversationPage = () => {
               <div className='p-8 flex items-center justify-center rounded-lg bg-muted'>
                 <Loader />
               </div>
-            
+
             )}
-         {!audio && !isLoading && (
-          <Empty lable='no music generated yet'/>
-         )}
-         <div>
-          {audio && <audio controls className='w-full mt-8'>
-            <source src={audio}/>
-            </audio>}
-         </div>
+            {!audio && !isLoading && (
+              <Empty lable='no music generated yet' />
+            )}
+            <div>
+              {audio && <audio controls className='w-full mt-8'>
+                <source src={audio} />
+              </audio>}
             </div>
           </div>
         </div>
-     
+      </div>
+
     </>
   )
 }
