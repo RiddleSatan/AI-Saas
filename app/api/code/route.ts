@@ -3,10 +3,6 @@ import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 
-// import OpenAI from "openai";
-// const openai = new OpenAI();
-
-
 
 
 export async function POST(req: Request) {
@@ -38,11 +34,6 @@ export async function POST(req: Request) {
     if (!messages) {
       return new NextResponse("no message has been given", { status: 400 });
     }
-    // const response=await openai.chat.completions.create({
-    //   model:'gpt-3.5-turbo',
-    //   messages:[{role: "user", content:messages}]
-    // })
-    // return NextResponse.json(response.choices[0]);
 
     const freeTrial = await checkApiLimit();
 

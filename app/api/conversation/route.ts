@@ -3,9 +3,6 @@ import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 
-// import OpenAI from "openai";
-// const openai = new OpenAI();
-
 
 export async function POST(req: Request) {
   const key: any = process.env.API_KEY;
@@ -43,11 +40,7 @@ export async function POST(req: Request) {
       return new NextResponse("free trial has been expired", { status: 403 });
     }
 
-    // const response=await openai.chat.completions.create({
-    //   model:'gpt-3.5-turbo',
-    //   messages:[{role: "user", content:messages}]
-    // })
-    // return NextResponse.json(response.choices[0]);
+
 
     const result = await model.generateContent(messages);
     await increaseApiLimit();
