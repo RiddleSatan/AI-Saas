@@ -33,16 +33,16 @@ const ProModal = () => {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+    <Dialog  open={isOpen} onOpenChange={handleOpenChange}>
 
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle className='flex flex-col gap-y-2 justify-center items-center'>
+      <DialogContent className='bg-white rounded'>
+        <DialogHeader className='rounded'>
+          <DialogTitle className='flex flex-col gap-y-2 justify-center items-center '>
             <div className='flex items-center gap-x-2'>
                   Upgrade to Riddle's Pro
-            <Badge className='py-1'>PRO</Badge>
+            <Badge className='py-1 bg-black text-white'>PRO</Badge>
             </div>
-                <Button>
+                <Button className='bg-black text-white rounded hover:bg-slate-600'>
                   Upgrade
                   <Zap className='w-4 h-4 ml-1 mr-0'/>
                 </Button>
