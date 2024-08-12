@@ -4,9 +4,13 @@ import { NextResponse } from 'next/server'
 import Replicate from 'replicate'
 
 
-const key=process.env.REPLICATE_API_KEY
+
 export async function POST(req:Request){
-    
+  const key=process.env.REPLICATE_API_KEY
+  if(!key){
+    return new NextResponse('!Error: key not found',{status:501})
+  }  
+
     const replicate=new Replicate({auth:key})
     const response=await req.json()
 const {prompt}=response

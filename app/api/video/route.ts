@@ -3,14 +3,19 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import Replicate from "replicate"
 
-const key=process.env.REPLICATE_API_KEY
+
+export  async function POST(req:Request){
+
+  const key=process.env.REPLICATE_API_KEY
 const userId=auth()
+if(!key){
+  return new NextResponse('error:key not found',{status:501})
+}
 
 const replicate=new Replicate({
     auth:key
 })
 
-export  async function POST(req:Request){
 const body=await req.json()
 const {prompt}=body
 

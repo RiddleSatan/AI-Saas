@@ -6,13 +6,20 @@ import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 // import OpenAI from "openai";
 // const openai = new OpenAI();
 
-const key: any = process.env.API_KEY;
 
-const genAI = new GoogleGenerativeAI(key);
 
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function POST(req: Request) {
+  const key: any = process.env.API_KEY;
+
+  if(!key){
+    return new NextResponse('error:key not found',{status:501})
+  }
+  
+  const genAI = new GoogleGenerativeAI(key);
+  
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  
   try {
     const { userId } = auth();
     const body = await req.json();

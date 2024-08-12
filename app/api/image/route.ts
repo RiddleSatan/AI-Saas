@@ -10,6 +10,9 @@ export async function POST(req: Request) {
   const { messages } = response;
 
   const key = process.env.IMAGE_GEN_API_KEY;
+  if(!key){
+    return new NextResponse('error:key not found',{status:501})
+  }
   const {userId }=auth()
 
   const baseUrl = "https://modelslab.com/api/v6/realtime/text2img";
