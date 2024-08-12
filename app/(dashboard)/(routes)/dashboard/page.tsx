@@ -55,7 +55,7 @@ const tools = [{
   bgColor: "bg-white/10 "
 },]
 
-export default function dashboard () {
+export default function Dashboard () {
   const router=useRouter()
   return (
     <div>
