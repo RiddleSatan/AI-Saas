@@ -85,8 +85,8 @@ const CodePage = () => {
                 <FormField control={form.control}
                   name="prompt"
                   render={({ field }) => (
-                    <FormItem className="col-span-12 lg:col-span-10">
-                      <FormControl className="m-0 p-0">
+                    <FormItem className="col-span-12 lg:col-span-10 ">
+                      <FormControl className="m-0 p-0 bg-slate-100">
                         <Input
                           disabled={isLoading}
                           placeholder="Simple navbar for social media website"
@@ -99,7 +99,8 @@ const CodePage = () => {
                 />
                 <Button
                   disabled={isLoading}
-                  className="col-span-12 lg:col-span-2 w-full"
+                
+                  className="col-span-12 lg:col-span-2 w-full bg-black text-white rounded hover:bg-slate-600"
                 >
                   Generate
                 </Button>
