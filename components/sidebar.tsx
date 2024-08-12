@@ -45,12 +45,12 @@ const routes = [
     href: "/code",
     color: "text-green-400",
   },
-  {
-    label: "Settings",
-    icon: Settings2,
-    href: "/settings",
-    color: "text-white",
-  },
+  // {
+  //   label: "Settings",
+  //   icon: Settings2,
+  //   href: "/settings",
+  //   color: "text-white",
+  // },
 ];
 
 type sidebar = {

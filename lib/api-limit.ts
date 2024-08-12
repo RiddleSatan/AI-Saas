@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { MAX_FREE_COUNT } from "@/const";
-import prisma from "./index.prisma";
+import prisma from "../prisma/index.prisma";
 
 export const increaseApiLimit = async () => {
   const { userId } = auth();
