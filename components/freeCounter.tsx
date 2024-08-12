@@ -41,7 +41,7 @@ export default function FreeCounter({ apiLimit = 0 }: freeCounterProps) {
                     <div className="text-center text-sm">
                         <p>{apiLimit}/{MAX_FREE_COUNT}  Free Generations</p>
 
-                        <Progress className="h-3 mt-1 border-black bg-orange-500  border-[1px]" value={(apiLimit / MAX_FREE_COUNT) * 100} />
+                        <Progress className="h-3 mt-1 border-black bg-white  border-[1px]" value={(apiLimit / MAX_FREE_COUNT) * 100} />
                         <Button onClick={handleOpen} className="mt-3 w-full h-8 bg-black text-white hover:bg-orange-500 ">
                             Upgrade
                             <Zap className="w-4 h-4 ml-2" />

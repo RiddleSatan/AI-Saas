@@ -173,7 +173,12 @@ const ConversationPage = () => {
 
             )}
             {images == undefined && !isLoading && (
-              <div><Empty lable='!...nothing to show...!' /></div>
+
+              <div className='flex flex-col '>
+                <h1 className='text-center text-red-600' > API request Limit reached! try Conversation or Code Generation!</h1>
+                <Empty lable='!...nothing to show...!' />
+
+              </div>
             )}
             <div className='flex flex-col-reverse gap-y-4 w-full items-center'>
 

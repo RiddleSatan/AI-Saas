@@ -114,7 +114,11 @@ const ConversationPage = () => {
 
             )}
             {!audio && !isLoading && (
-              <Empty lable='no music generated yet' />
+              <div className='flex flex-col '>
+              <h1 className='text-center text-red-600' > API request Limit reached! try Conversation or Code Generation!</h1>
+              <Empty lable='!...nothing to show...!' />
+
+            </div>
             )}
             <div>
               {audio && <audio controls className='w-full mt-8'>

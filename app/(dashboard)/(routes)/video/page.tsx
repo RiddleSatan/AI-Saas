@@ -110,7 +110,11 @@ setVideo('')
            
               {!video && !isLoading && (
       
-      <Empty lable='nothing to show | something went wrong '/>
+      <div className='flex flex-col '>
+      <h1 className='text-center text-red-600' > API request Limit reached! try Conversation or Code Generation!</h1>
+      <Empty lable='!...nothing to show...!' />
+
+    </div>
    )}
             <div>
            {video && (
