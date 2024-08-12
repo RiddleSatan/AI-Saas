@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react'
 import {
   Dialog,
   DialogContent,
@@ -39,7 +38,7 @@ const ProModal = () => {
         <DialogHeader className='rounded'>
           <DialogTitle className='flex flex-col gap-y-2 justify-center items-center '>
             <div className='flex items-center gap-x-2'>
-                  Upgrade to Riddle's Pro
+                  Upgrade to Riddle&apos;s Pro
             <Badge className='py-1 bg-black text-white'>PRO</Badge>
             </div>
                 <Button className='bg-black text-white rounded hover:bg-slate-600'>

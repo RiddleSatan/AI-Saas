@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Code2, Image, LayoutDashboard, MessageCircle, Music, Settings2, VideoIcon } from "lucide-react";
-import Router, { useRouter } from "next/navigation";
+import  { useRouter } from "next/navigation";
 
 const tools = [{
   label: "Dashboard",
@@ -55,7 +55,7 @@ const tools = [{
   bgColor: "bg-white/10 "
 },]
 
-const dashboard = () => {
+export default function dashboard () {
   const router=useRouter()
   return (
     <div>
@@ -84,4 +84,4 @@ const dashboard = () => {
   );
 };
 
-export default dashboard;
+

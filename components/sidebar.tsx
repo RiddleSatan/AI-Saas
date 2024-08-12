@@ -73,7 +73,7 @@ const Sidebar = ({ apiLimit }: sidebar) => {
             <div className="w-16 h-16 overflow-hidden">
               <img className="invert" src="./logo.png" alt="Logo" />
             </div>
-            <h1 className="font-bold text-3xl">Riddle's</h1>
+            <h1 className="font-bold text-3xl">Riddle&apos;s</h1>
           </Link>
 
           <div className="space-y-1">
